@@ -50,6 +50,11 @@ Agent specification v2 is generated
 
 Differences between v1 and v2 are tracked
 
+1. Clone the Repository
+git clone https://github.com/YOUR_USERNAME/clara-automation-pipeline.git
+
+cd clara-automation-pipeline
+
 How to Run Locally
 1. Install Dependencies
 
