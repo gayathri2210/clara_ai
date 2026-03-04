@@ -1,0 +1,57 @@
+{
+  "name": "clara_ai",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "45557263-d7ab-4334-a146-13ca29146166",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:5000/run-pipeline",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "d8401161-8806-4670-bba2-a00d8d3645bd",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "8c5f3a0c-7f85-47b6-abdd-d4eba74e34ae",
+  "meta": {
+    "instanceId": "5d7d7430d0a164bad13fac2d06c337b1a48c76a220b989ab408c9c6a4932b9a7"
+  },
+  "id": "rKfRhtD1nhTlRZkR",
+  "tags": []
+}

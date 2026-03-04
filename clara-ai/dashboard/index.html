@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Clara AI Automation Dashboard</title>
+
+<style>
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #e8f4ff;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.header {
+    padding: 40px 20px 10px 20px;
+}
+
+h1 {
+    color: #0b4f8a;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #444;
+}
+
+.container {
+    width: 70%;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+
+button {
+    background-color: #0b7dda;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+button:hover {
+    background-color: #095caa;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 6px;
+    font-size: 16px;
+}
+
+.metric {
+    font-size: 22px;
+    color: #0b4f8a;
+    font-weight: bold;
+}
+
+.footer {
+    margin-top: 40px;
+    font-size: 14px;
+    color: #666;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="header">
+    <h1>Clara AI Automation Dashboard</h1>
+    <div class="subtitle">Submitted by Gayathri Dhanasekaran</div>
+</div>
+
+
+<div class="container">
+
+    <div class="card">
+        <h2>Pipeline Metrics</h2>
+        <button onclick="loadMetrics()">Load Metrics</button>
+
+        <p>Total Accounts Processed:</p>
+        <div class="metric" id="totalAccounts">--</div>
+    </div>
+
+
+    <div class="card">
+        <h2>Accounts Processed</h2>
+
+        <button onclick="loadAccounts()">Load Accounts</button>
+
+        <ul id="accounts"></ul>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    Clara Answers Intern Assignment – Automation Pipeline Demo
+</div>
+
+
+<script>
+
+async function loadAccounts() {
+
+    const res = await fetch("accounts.json");
+    const data = await res.json();
+
+    const list = document.getElementById("accounts");
+    list.innerHTML = "";
+
+    data.forEach(acc => {
+
+        const diffLink = `diffs/${acc}.html`;
+
+        list.innerHTML += `
+            <li>
+                <strong>${acc}</strong>
+                <br>
+                <a href="${diffLink}" target="_blank">
+                    View v1 → v2 Changes
+                </a>
+            </li>
+        `;
+    });
+
+}
+
+async function loadMetrics() {
+
+    const res = await fetch("metrics.json");
+    const data = await res.json();
+
+    document.getElementById("totalAccounts").innerText = data.total_accounts;
+
+}
+
+</script>
+
+</body>
+</html>
